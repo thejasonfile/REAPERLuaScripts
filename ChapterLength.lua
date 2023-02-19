@@ -4,24 +4,15 @@ function Msg(param)
 end
 
 function convert_time(sec)
-  length_hour = 0
-  length_min = 0
-  length_sec = 0
   remaining_sec = sec
+
+  length_hour = math.floor(remaining_sec / 3600)
+  remaining_sec = remaining_sec % 3600
   
-  if (remaining_sec / 3600 > 0)
-  then
-    length_hour = math.floor(remaining_sec / 3600)
-    remaining_sec = remaining_sec % 3600
-  end
-  
-  if (remaining_sec / 60 > 0)
-  then
-    length_min = math.floor(remaining_sec / 60)
-    remaining_sec = remaining_sec % 60
-    length_sec = math.floor(remaining_sec)
-  end
-  
+  length_min = math.floor(remaining_sec / 60)
+  remaining_sec = remaining_sec % 60
+  length_sec = math.floor(remaining_sec)
+
   return {length_hour, length_min, length_sec}
 end
 
