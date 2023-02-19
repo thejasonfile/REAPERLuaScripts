@@ -12,13 +12,13 @@ function convert_time(sec)
   if (remaining_sec / 3600 > 0)
   then
     length_hour = math.floor(remaining_sec / 3600)
-    remaining_sec = remaining_sec - (3600 * length_hour)
+    remaining_sec = remaining_sec % 3600
   end
   
   if (remaining_sec / 60 > 0)
   then
     length_min = math.floor(remaining_sec / 60)
-    remaining_sec = remaining_sec - (60 * length_min)
+    remaining_sec = remaining_sec % 60
     length_sec = math.floor(remaining_sec)
   end
   
