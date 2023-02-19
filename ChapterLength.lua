@@ -12,22 +12,16 @@ function convert_time(sec)
   if (remaining_sec / 3600 > 0)
   then
     length_hour = math.floor(remaining_sec / 3600)
-    remaining_sec = remaining_sec % 3600
-    --Msg("remaining_sec at end of first then are"..remaining_sec)
+    remaining_sec = remaining_sec - (3600 * length_hour)
   end
   
   if (remaining_sec / 60 > 0)
   then
-    --Msg("remaining seconds are "..remaining_sec)
     length_min = math.floor(remaining_sec / 60)
-    remaining_sec = remaining_sec % 60
+    remaining_sec = remaining_sec - (60 * length_min)
     length_sec = math.floor(remaining_sec)
   end
   
-  --length_hour = math.floor (sec / 3600)
-  --length_min = math.floor(sec / 60)
-  --length_sec = math.floor(sec - (length_min * 60))
-  --return {length_min, length_sec}
   return {length_hour, length_min, length_sec}
 end
 
@@ -42,7 +36,7 @@ function Main()
     take_name = reaper.GetTakeName(item_take)
     
     item_length_total = reaper.GetMediaItemInfo_Value(item, "D_LENGTH")
-    total_time = total_time + item_length_total
+    total_time = total_time + math.floor(item_length_total)
     item_length = convert_time(item_length_total)
     Msg(take_name.." is "..item_length[1]..":"..item_length[2]..":"..item_length[3])
     
